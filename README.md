@@ -1,4 +1,4 @@
-# 🧬 PT-RAG: Differentiable Retrieval-Augmented Generation for Single-Cell Perturbation Prediction
+# 🧬 PT-RAG: Retrieval-Augmented Generation for Predicting Cellular Responses to Gene Perturbation
 
 ## 📋 Overview
 

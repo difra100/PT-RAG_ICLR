@@ -4,7 +4,7 @@
 
 We propose **PT-RAG** (Perturbation-aware Two-Stage Retrieval-Augmented Generation), a novel differentiable RAG pipeline that enhances single-cell perturbation response generation. PT-RAG leverages similar perturbation examples from a training database through a fully differentiable retrieval mechanism with sparsity regularization.
 
-!image[figures/ptrag_scheme_final.png]  
+![image](figures/ptrag_scheme_final.png)  
 
 ### Key Contributions
 

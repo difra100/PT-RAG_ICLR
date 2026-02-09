@@ -1,0 +1,29 @@
+wandb_track: true
+weight_decay: 0.0005
+batch_size: 16
+lr: 1e-4
+max_steps: 40000
+train_seed: 42
+val_freq: 2000
+ckpt_every_n_steps: 2000
+gradient_clip_val: 10 # 0 means no clipping
+loss_fn: mse
+devices: 1  # Number of GPUs to use for training
+strategy: auto  # DDP strategy for multi-GPU training
+use_mfu: true
+mfu_kwargs:
+    available_flops: 60e12
+    use_backward: true
+    logging_interval: 10
+    window_size: 2
+cumulative_flops_use_backward: true
+rag: false  # Enable RAG (Retrieval-Augmented Generation) mode
+topk_rag: 5  # Number of closest embeddings to retrieve in RAG mode
+rag_weight: 0.0  # Weight for RAG loss component
+use_genept: false  # Enable the use of GenePT embeddings
+retrieve_than_predict: false  # Retrieve embeddings before making predictions
+differentiable_rag: false
+check_gradients: false
+gradient_check_interval: 1  # Controlla ogni 100 step (opzionale, default=100)
+gumbel_sparsity_loss: false
+gumbel_sparsity_weight: 0.01

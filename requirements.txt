@@ -1,0 +1,3 @@
+faiss-cpu
+gengeneeval==0.6.2
+gengeneeval[gpu]==0.6.2

@@ -1,0 +1,49 @@
+# Example configuration showing wandb integration
+name: "my_experiment"
+output_dir: "./experiments"
+overwrite: false
+
+# Training configuration with wandb settings
+training:
+  train_seed: 42
+  batch_size: 32
+  max_steps: 10000
+  val_freq: 1000
+  ckpt_every_n_steps: 2000
+  lr: 0.0001
+  gradient_clip_val: 1.0
+  log_every_n_steps: 100
+  
+  # Wandb settings - NEW!
+  wandb: true  # Enable wandb logging
+  run_name: "my_custom_run_name"  # Optional: custom name for the run (defaults to 'name' field)
+  
+  # RAG settings (if needed)
+  rag: false
+  use_genept: false
+
+# Data configuration
+data:
+  name: "perturbation"
+  kwargs:
+    embed_key: "X_pca"
+    output_space: "gene"
+    pert_col: "condition"
+    control_pert: "non-targeting"
+    basal_mapping_strategy: "control"
+
+# Model configuration
+model:
+  name: "state"
+  cell_set_len: 100
+  kwargs:
+    hidden_dim: 512
+    n_encoder_layers: 3
+    decoder_hidden_dims: [1024, 1024, 512]
+    dropout: 0.1
+
+# Wandb configuration (optional - for backward compatibility)
+# These fields are now optional since project and entity are hardcoded
+wandb:
+  local_wandb_dir: "./wandb_logs"
+  tags: ["experiment", "test"]

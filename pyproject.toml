@@ -1,0 +1,58 @@
+[project]
+name = "arc-state"
+version = "0.9.31"
+description = "State is a machine learning model that predicts cellular perturbation response across diverse contexts."
+readme = "README.md"
+authors = [
+    { name = "Abhinav Adduri", email = "abhinav.adduri@arcinstitute.org" },
+    { name = "Yusuf Roohani", email = "yusuf.roohani@arcinstitute.org" },
+    { name = "Noam Teyssier", email = "noam.teyssier@arcinstitute.org" },
+    { name = "Rajesh Ilango" },
+    { name = "Dhruv Gautam", email = "dhruvgautam@berkeley.edu" },
+]
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "anndata>=0.11.4",
+    "cell-load>=0.8.3",
+    "numpy>=2.2.6",
+    "pandas>=2.2.3",
+    "pyyaml>=6.0.2",
+    "scanpy>=1.11.2",
+    "scikit-learn>=1.6.1",
+    "seaborn>=0.13.2",
+    "torch>=2.7.0",
+    "tqdm>=4.67.1",
+    "wandb>=0.19.11",
+    "hydra-core>=1.3.2",
+    "geomloss>=0.2.6",
+    "transformers>=4.52.3",
+    "peft>=0.11.0",
+    "cell-eval>=0.5.22",
+    "ipykernel>=6.30.1",
+    "scipy>=1.15.0",
+]
+
+[project.optional-dependencies]
+rag = [
+    "faiss-cpu>=1.7.4"
+]
+vectordb = [
+    "lancedb>=0.24.0"
+]
+
+[dependency-groups]
+dev = ["ruff>=0.11.11", "vulture>=2.14", "ipython>=8.37.0"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+state = "state.__main__:main"
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/state"]

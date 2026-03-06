@@ -18,7 +18,6 @@ def load_gene_mapping(checkpoint_dir):
     if mapping_file.exists():
         with open(mapping_file, 'rb') as f:
             name_to_idx = pickle.load(f)
-        # Invert to get idx -> name mapping
         idx_to_name = {idx: str(name) for name, idx in name_to_idx.items()}
         logger.info(f"Loaded gene mapping with {len(idx_to_name)} genes")
         return idx_to_name
@@ -115,7 +114,6 @@ def run_tx_predict(args: ap.ArgumentParser):
     import torch
     import yaml
 
-    # Cell-eval for metrics computation
     from cell_eval import MetricsEvaluator
     from cell_eval.utils import split_anndata_on_celltype
     from cell_load.data_modules import PerturbationDataModule
@@ -424,14 +422,11 @@ def run_tx_predict(args: ap.ArgumentParser):
 
     current_idx = 0
 
-    # Initialize aggregation variables directly
     all_pert_names = []
     all_celltypes = []
     all_gem_groups = []
     all_pert_barcodes = []
     all_ctrl_barcodes = []
-    
-    # Initialize retrieval info collection (for RAG models)
     all_retrieval_info = []
 
     # Check if we should collect retrieval info
@@ -589,17 +584,7 @@ def run_tx_predict(args: ap.ArgumentParser):
         adata_real.obsm[data_module.embed_key] = final_reals
         logger.info(f"Added predicted embeddings to adata.obsm['{data_module.embed_key}']")
     else:
-        # if len(gene_names) != final_preds.shape[1]:
-        #     gene_names = np.load(
-        #         "/large_storage/ctc/userspace/aadduri/datasets/tahoe_19k_to_2k_names.npy", allow_pickle=True
-        #     )
-        #     var = pd.DataFrame({"gene_names": gene_names})
-
-        # Create adata for predictions - model was trained on gene expression space already
-        # adata_pred = anndata.AnnData(X=final_preds, obs=obs, var=var)
         adata_pred = anndata.AnnData(X=final_preds, obs=obs)
-        # Create adata for real - using the true gene expression values
-        # adata_real = anndata.AnnData(X=final_reals, obs=obs, var=var)
         adata_real = anndata.AnnData(X=final_reals, obs=obs)
 
     # Optionally filter to perturbations seen in at least one training context

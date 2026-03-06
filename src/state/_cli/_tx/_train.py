@@ -127,8 +127,8 @@ def run_tx_train(cfg: DictConfig):
             genept_data = pickle.load(f)
         
         # Get embedding dimension from any GenePT embedding
-        random_el = list(genept_data.keys())[0]
-        genept_emb_dim = len(genept_data[random_el])
+        sample_key = list(genept_data.keys())[0]
+        genept_emb_dim = len(genept_data[sample_key])
         
         # Create new pert_onehot_map with GenePT embeddings
         new_pert_onehot_map = {}
@@ -156,43 +156,29 @@ def run_tx_train(cfg: DictConfig):
     data_module.setup(stage="fit")
     
     
-    # Filtra i dataset se usi GenePT
+    # Filter datasets to keep only perturbations with GenePT embeddings
     if cfg['training'].get('use_genept', False):
         print("Filtering datasets to keep only perturbations present in GenePT...")
-        
-        # Usa le chiavi del new_pert_onehot_map (che è quello che verrà salvato e caricato)
         valid_perts = set(data_module.pert_onehot_map.keys())
         
         def filter_subset_by_perts(subset, valid_perts):
-            """Filtra un Subset mantenendo solo celle con perturbazioni valide o controlli"""
-            underlying_ds = subset.dataset  # PerturbationDataset
+            """Filter a Subset keeping only cells with valid perturbations or controls."""
+            underlying_ds = subset.dataset
             cache = underlying_ds.metadata_cache
             control_pert_code = cache.control_pert_code
-            
-            # Ottieni gli indici originali del subset
             original_indices = subset.indices
-            
-            # Per ogni indice, controlla se la perturbazione è valida O se è controllo
             valid_mask = []
             for idx in original_indices:
                 pert_code = cache.pert_codes[idx]
-                # Mantieni sempre i controlli, anche se non in GenePT
                 if pert_code == control_pert_code:
                     valid_mask.append(True)
                 else:
                     pert_name = cache.pert_categories[pert_code]
                     valid_mask.append(pert_name in valid_perts)
             valid_mask = np.array(valid_mask)
-            
-            # Crea nuovi indici filtrati
             filtered_indices = original_indices[valid_mask]
-            
-            # Aggiorna il subset
             subset.indices = filtered_indices
-            
             return len(original_indices), len(filtered_indices)
-        
-        # Filtra tutti i dataset splits
         
         
         total_removed = 0

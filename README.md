@@ -1,5 +1,9 @@
 # 🧬 PT-RAG: Retrieval-Augmented Generation for Predicting Cellular Responses to Gene Perturbation
 
+> **🎉 Accepted at ICLR 2026 Workshop [Gen² @ ICLR 2026](https://genai-in-genomics.github.io/) — Generative AI in Genomics: Barriers and Frontiers**  
+
+**Authors:** [Andrea Giuseppe Di Francesco](https://sites.google.com/uniroma1.it/andreagiuseppedifrancesco/home-page), [Andrea Rubbi](https://andrearubbi.com/), [Pietro Liò](https://www.cst.cam.ac.uk/people/pl219)
+
 ## 📋 Overview
 
 We propose **PT-RAG** (Perturbation-aware Two-Stage Retrieval-Augmented Generation), a novel differentiable RAG pipeline that enhances single-cell perturbation response generation. PT-RAG leverages similar perturbation examples from a training database through a fully differentiable retrieval mechanism with sparsity regularization.
@@ -15,8 +19,6 @@ We propose **PT-RAG** (Perturbation-aware Two-Stage Retrieval-Augmented Generati
 
 ### Model Architecture
 
-- **SE (State Embedding)**: Generates embeddings from gene expression profiles
-- **ST (State Transition)**: Predicts cellular responses to perturbations  
 - **PT-RAG** ⭐: Our proposed differentiable RAG-enhanced state transition model
 
 ## ⚡ Installation
@@ -91,10 +93,9 @@ PT-RAG introduces a fully differentiable retrieval mechanism that learns to sele
 ### How PT-RAG Works
 
 1. **🔍 Differentiable Retrieval**: Learn retrieval weights end-to-end using Gumbel-softmax
-2. **🎯 Sparsity Regularization**: Encourage focused attention on most relevant examples  
-3. **🧠 Context Integration**: Cross-attention mechanism fuses retrieved examples with query
-4. **⚖️ Cell-Type Adaptation**: Retrieve-then-predict strategy adapts to cell type characteristics
-5. **📊 Joint Optimization**: Retrieval and prediction trained jointly for optimal performance
+2. **🎯 Sparsity Regularization**: Encourage model to not overselect perturbations, but only the most relevant ones  
+3. **⚖️ Cell-Type Adaptation**: Retrieve-then-predict strategy adapts to cell type characteristics
+4. **📊 Joint Optimization**: Retrieval and prediction trained jointly to generate cell population gene expressions
 
 ### Key Parameters
 
@@ -173,6 +174,8 @@ python -m state.__main__ tx train \
 
 ## 🔬 Predictions and Evaluation
 
+Metrics are computed using the **[GenGeneEval (GGE)](https://github.com/AndreaRubbi/GGE)** library, which provides standardized evaluation benchmarks for gene perturbation prediction models.
+
 ### Batch Predictions
 
 Run predictions on multiple trained models:
@@ -241,4 +244,8 @@ python -m state.__main__ tx predict \
 
 ## 🙏 Acknowledgments
 
-This work builds upon the original State model and introduces PT-RAG, a novel differentiable retrieval-augmented generation approach for improved single-cell perturbation modeling.
+This repository is **highly inspired by** and builds upon the [State](https://github.com/ArcInstitute/state) model from the Arc Institute — *"Predicting cellular responses to perturbation across diverse contexts with State"*. We thank the State authors for open-sourcing their work, which served as the backbone of PT-RAG.
+
+PT-RAG introduces a novel differentiable retrieval-augmented generation approach on top of State for improved single-cell perturbation modeling.
+
+Evaluation metrics are computed using the **[GenGeneEval (GGE)](https://github.com/AndreaRubbi/GGE)** library.

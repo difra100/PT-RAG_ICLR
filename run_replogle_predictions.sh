@@ -5,35 +5,10 @@ echo "=========================================="
 # Base directory for experiments
 EXP_DIR="$HOME/PT-RAG/experiments/replogle"
 
-# Array of model directories
-# MODELS=(
-#     "hepg2_holdout_rag_genept_retrieve_than_predict"
-#     "hepg2_holdout_rag_top2genept_retrieve_than_predict"
-#     "hepg2_holdout_rag_top5genept_retrieve_than_predict"
-#     "hepg2_holdout_rag_top10genept_retrieve_than_predict"
 
 MODELS=(
-    # "hepg2_holdout"
-    # "hepg2_rag32_sparsity_0.1"
-    "k562_no_rag_genept_baseline"
-    "rpe1_rag_genept_retrieve_k32"
-    # "hepg2_holdout_rag_genept_retrieve_than_predict"
-    # "hepg2_rag_genept_retrieve_k32"
-    # "hepg2_no_rag_genept_baseline"
+    "hepg2_rag32_sparsity_0.1"
     
-    # rpe1_rag_diff_sparsity0.1
-    # k562_no_rag_baseline
-    # jurkat_rag_genept_retrieve_k32
-    # jurkat_no_rag_genept_baseline
-    # rpe1_no_rag_genept_baseline
-    # k562_rag_diff_sparsity0.1
-    # "hepg2_holdout_rag_top2genept_retrieve_than_predict"
-    # "hepg2_holdout_rag_top5genept_retrieve_than_predict"
-    # "hepg2_holdout_rag_top10genept_retrieve_than_predict"
-    # "hepg2_rag32_sparsity_0.0"
-    # "hepg2_rag32_sparsity_0.01"
-
-
 )
 
 # Checkpoint to use (default: last.ckpt)

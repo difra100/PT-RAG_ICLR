@@ -86,6 +86,7 @@ mkdir pretrained_SE
 Put the model weights in pretrained_SE/.  
 
 
+
 ## 🎯 PT-RAG: Differentiable Retrieval Pipeline
 
 PT-RAG introduces a fully differentiable retrieval mechanism that learns to select and weight relevant perturbation examples for improved predictions.
@@ -183,6 +184,32 @@ Run predictions on multiple trained models:
 ```bash
 # Generate predictions for all trained models
 bash run_replogle_predictions.sh
+```  
+If you want to run pre-trained PT-RAG models download them on Huggingface: https://huggingface.co/difra00/PT-RAG/tree/main.  Then substitute the values in `run_replogle_predictions.sh`.  
+
+
+```bash 
+EXP_DIR="$HOME/PT-RAG/experiments/replogle"
+
+
+MODELS=(
+    "hepg2_rag32_sparsity_0.1"
+    
+)
+
+```
+
+with   
+
+```bash 
+EXP_DIR="$HOME/PT-RAG/experiments/replogle"
+
+
+MODELS=(
+    "PRETRAINED_MODEL_FOLDER"
+    
+)
+
 ```
 
 ### Individual Predictions

@@ -1,6 +1,9 @@
 # 🧬 PT-RAG: Retrieval-Augmented Generation for Predicting Cellular Responses to Gene Perturbation
 
-> **🎉 Accepted at ICLR 2026 Workshop [Gen² @ ICLR 2026](https://genai-in-genomics.github.io/) — Generative AI in Genomics: Barriers and Frontiers**  
+> **🎉 Accepted at ICLR 2026 Workshop [Gen² @ ICLR 2026](https://genai-in-genomics.github.io/) — Generative AI in Genomics: Barriers and Frontiers**
+>
+
+📋[**Paper**](https://arxiv.org/abs/2603.07233)
 
 **Authors:** [Andrea Giuseppe Di Francesco](https://sites.google.com/uniroma1.it/andreagiuseppedifrancesco/home-page), [Andrea Rubbi](https://andrearubbi.com/), [Pietro Liò](https://www.cst.cam.ac.uk/people/pl219)
 
